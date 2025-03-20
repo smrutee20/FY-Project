@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Login.css';
 import { useNavigate } from "react-router-dom";
 import { users } from "./mockUsers";
 
@@ -20,13 +21,15 @@ const Login = ({ setUser }) => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleLogin}>Login</button>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-        </div>
+        <>
+            <div className="neumorphic neumorphic-card">
+                <h1>Login</h1>
+                <input type="text" className="neumorphic neumorphic-input" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="password" className="neumorphic neumorphic-input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button className="neumorphic neumorphic-button" onClick={handleLogin}>Login</button>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+            </div>
+        </>
     );
 };
 

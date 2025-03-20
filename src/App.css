@@ -1,15 +1,13 @@
-/* App.css */
-
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
-  padding: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background-color: #e0e5ec;
+  font-family: Arial, sans-serif;
 }
+
 
 #root {
   max-width: 600px;
@@ -43,9 +41,9 @@ button {
   font-size: 1rem;
 }
 
-button:hover {
+/* button:hover {
   background-color: #4a54e1;
-}
+} */
 
 .error {
   color: red;

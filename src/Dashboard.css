@@ -57,3 +57,24 @@ body {
 .logout-button:hover {
     background-color: #cc0000;
 }
+
+
+/* Dashboard.css */
+
+/* Style for weather section */
+.weather-section {
+    margin: 20px 0;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.weather-section h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.weather-section p {
+    font-size: 16px;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import WeatherWidget from "./WeatherWidget";  // Import the WeatherWidget
 import "./Dashboard.css";
 
 const Dashboard = ({ user }) => {
@@ -13,6 +14,11 @@ const Dashboard = ({ user }) => {
         <div className="container">
             <h2>Diaper Status Tracker</h2>
             <p>Welcome, {user?.username} ({user?.role})</p>
+
+            {/* Add the WeatherWidget to display weather info */}
+            <div className="weather-section">
+                <WeatherWidget />
+            </div>
 
             {user?.role === "admin" && (
                 <div>
@@ -39,16 +45,15 @@ const Dashboard = ({ user }) => {
             {user?.role === "nurse" && <p>Nurse's Section: Update diaper status.</p>}
 
             <button
-    className="logout-button"
-    onClick={() => {
-        localStorage.removeItem("user");
-        navigate("/");
-        window.location.reload(); // Optional: force app re-render
-    }}
->
-    Logout
-</button>
-
+                className="logout-button"
+                onClick={() => {
+                    localStorage.removeItem("user");
+                    navigate("/");
+                    window.location.reload(); // Optional: force app re-render
+                }}
+            >
+                Logout
+            </button>
         </div>
     );
 };

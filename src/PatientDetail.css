@@ -1,0 +1,48 @@
+.patient-container {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.status {
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.status.dry {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.moderate {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.wet {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+button {
+  margin-top: 2rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d47a1;
+}

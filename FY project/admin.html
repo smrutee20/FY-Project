@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diaper Status Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .container { max-width: 400px; margin: auto; }
+        .hidden { display: none; }
+        .status { font-size: 18px; font-weight: bold; }
+        .normal { color: green; }
+        .moderate { color: orange; }
+        .critical { color: red; }
+        #timer { font-size: 20px; font-weight: bold; color: blue; }
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(7, 1fr); 
+            gap: 5px; 
+            margin-top: 20px;
+        }
+        .bed { 
+            padding: 20px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            border: 1px solid black; 
+        }
+        .bed.green { background-color: lightgreen; }
+        .bed.yellow { background-color: yellow; }
+        .bed.red { background-color: red; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginPage">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter Username"><br><br>
+        <input type="password" id="password" placeholder="Enter Password"><br><br>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div class="container hidden" id="adminPage">
+        <h2>Admin Dashboard - Bed Status</h2>
+        <div class="grid-container">
+            <div class="bed yellow" onclick="viewPatient(1)">1</div>
+            <div class="bed green" onclick="viewPatient(2)">2</div>
+            <div class="bed red" onclick="viewPatient(3)">3</div>
+            <div class="bed green">4</div>
+            <div class="bed yellow">5</div>
+            <div class="bed green">6</div>
+            <div class="bed red">7</div>
+            <div class="bed green">8</div>
+            <div class="bed yellow">9</div>
+            <div class="bed green">10</div>
+        </div>
+        <button onclick="logout()">Logout</button>
+    </div>
+    
+    <div class="container hidden" id="resultPage">
+        <h2>Diaper Status Report</h2>
+        <p><strong>Patient Name:</strong> Rahul Sharma</p>
+        <p><strong>Age:</strong> 32</p>
+        <p><strong>Date of Admit:</strong> 20/02/2025</p>
+        <p><strong>Number of Diaper Changes:</strong> 7</p>
+        <p><strong>Time Until Next Diaper Change:</strong> <span id="timer"></span></p>
+        <p><strong>Nurse Name:</strong> Shanti Gupta</p>
+        <p><strong>Contact Number:</strong> +91 786897878</p>
+        <p class="status moderate">🟡 Moderate Wetness</p>
+        <button onclick="goToAdmin()">Back to Admin</button>
+    </div>
+
+    <script>
+        function login() {
+            document.getElementById("loginPage").classList.add("hidden");
+            document.getElementById("adminPage").classList.remove("hidden");
+        }
+
+        function logout() {
+            document.getElementById("adminPage").classList.add("hidden");
+            document.getElementById("loginPage").classList.remove("hidden");
+        }
+
+        function viewPatient(bedNumber) {
+            if (bedNumber === 1 || bedNumber === 2 || bedNumber === 3) {
+                document.getElementById("adminPage").classList.add("hidden");
+                document.getElementById("resultPage").classList.remove("hidden");
+                startTimer();
+            }
+        }
+
+        function goToAdmin() {
+            document.getElementById("resultPage").classList.add("hidden");
+            document.getElementById("adminPage").classList.remove("hidden");
+        }
+
+        function startTimer() {
+            let lastDiaperChange = new Date();
+            lastDiaperChange.setHours(lastDiaperChange.getHours() - 3); // 3 hours ago
+            let nextChangeTime = new Date(lastDiaperChange.getTime() + 4 * 60 * 60 * 1000); // 4-hour interval
+
+            function updateTimer() {
+                let now = new Date();
+                let diff = nextChangeTime - now;
+                if (diff <= 0) {
+                    document.getElementById("timer").textContent = "Change Now!";
+                    document.getElementById("timer").style.color = "red";
+                } else {
+                    let hours = Math.floor(diff / (1000 * 60 * 60));
+                    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    document.getElementById("timer").textContent = `${hours}h ${minutes}m ${seconds}s`;
+                    setTimeout(updateTimer, 1000);
+                }
+            }
+            updateTimer();
+        }
+    </script>
+</body>
+</html>

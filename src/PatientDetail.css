@@ -46,3 +46,28 @@ button {
 button:hover {
   background-color: #0d47a1;
 }
+
+.patient-card button span {
+  font-weight: bold; /* Force bold on the symbol */
+}
+
+.patient-card button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  width: 15px;        /* smaller width */
+  height: 25px;       /* smaller height */
+  margin-left: 2px;   /* slight left spacing */
+  font-size: 15px;
+  font-weight: bold; 
+  cursor: pointer;
+  border-radius: 100%;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-card button:hover {
+  background-color: #243332;
+}

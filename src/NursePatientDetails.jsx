@@ -1,9 +1,9 @@
 // NursePatientDetails.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PatientDetail.css";
 
-const patientData = {
+const initialPatientData = {
   1: {
     name: "Rahul Sharma",
     age: 32,
@@ -26,6 +26,7 @@ const patientData = {
     status: "dry",
     statusText: "🟢 Dry",
   },
+  // ... rest of your patients as before
   3: {
     name: "Vikram Das",
     age: 60,
@@ -120,10 +121,32 @@ const NursePatientDetails = ({ user }) => {
   const navigate = useNavigate();
   const nurseName = user?.fullName || user?.username;
 
+  // Add state to allow diaper change updates
+  const [patients, setPatients] = useState(initialPatientData);
 
-  const assignedPatients = Object.entries(patientData).filter(
+  const assignedPatients = Object.entries(patients).filter(
     ([_, data]) => data.nurse === nurseName
   );
+
+  const handleIncrement = (id) => {
+    setPatients((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        diaperChanges: prev[id].diaperChanges + 1,
+      },
+    }));
+  };
+
+  const handleDecrement = (id) => {
+    setPatients((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        diaperChanges: Math.max(0, prev[id].diaperChanges - 1),
+      },
+    }));
+  };
 
   if (assignedPatients.length === 0)
     return <p style={{ textAlign: "center" }}>No patients assigned to you.</p>;
@@ -137,7 +160,11 @@ const NursePatientDetails = ({ user }) => {
           <p><strong>Patient Name:</strong> {patient.name}</p>
           <p><strong>Age:</strong> {patient.age}</p>
           <p><strong>Admit Date:</strong> {patient.admitDate}</p>
-          <p><strong>Diaper Changes:</strong> {patient.diaperChanges}</p>
+          <p>
+            <strong>Diaper Changes:</strong> {patient.diaperChanges}
+            <button onClick={() => handleIncrement(id)} style={{ margin: "0 5px" }}>+</button>
+            <button onClick={() => handleDecrement(id)}>-</button>
+          </p>
           <p><strong>Next Change:</strong> {patient.nextChange}</p>
           <p><strong>Contact:</strong> {patient.contact}</p>
           <p className={`status ${patient.status}`}>{patient.statusText}</p>

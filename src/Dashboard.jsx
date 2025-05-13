@@ -12,8 +12,7 @@ const Dashboard = ({ user }) => {
 
     return (
         <div className="container">
-            <h2>Diaper Status Tracker</h2>
-            <p>Welcome, {user?.username} ({user?.role})</p>
+            <h1>Welcome, {user?.username}!</h1>
 
             {/* Add the WeatherWidget to display weather info */}
             <div className="weather-section">

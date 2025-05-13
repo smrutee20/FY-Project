@@ -4,6 +4,7 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import PatientDetail from "./PatientDetail";
+import NursePatientDetails from "./NursePatientDetails";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -22,6 +23,14 @@ const App = () => {
                     element={
                         <ProtectedRoute user={user}>
                             <Dashboard user={user} />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/nurse-patients"
+                    element={
+                        <ProtectedRoute user={user}>
+                            <NursePatientDetails user={user} />
                         </ProtectedRoute>
                     }
                 />

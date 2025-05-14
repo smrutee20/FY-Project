@@ -6,7 +6,7 @@ const WeatherWidget = () => {
   const [weather, setWeather] = useState(null);
   const [locationAllowed, setLocationAllowed] = useState(true);
 
-  const API_KEY = "0b5544b715d15a15789d273d9921aadb"; // replace this with your real API key
+  const API_KEY = "YOUR_KEY"; // replace this with your real API key
 
   useEffect(() => {
     if (navigator.geolocation) {

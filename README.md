@@ -82,7 +82,33 @@ This project presents an IoT-based smart wetness monitoring system designed to i
 ##  Backend Overview
 
 - **MongoDB** (NoSQL) for storing long-term data and event logs.
-- Can be extended with Node.js/Express APIs to provide advanced querying and analytics.
+
+---
+
+##  Future Scope
+
+- **Ammonia Gas Sensor**: For early infection detection in soiled diapers.
+- **SMS Alerts**: Integration with Twilio to alert nurses via mobile.
+- **Machine Learning**: Analyze diaper change patterns and predict wetness intervals.
+- **Mobile App**: Cross-platform nurse access via mobile devices.
+
+---
+
+##  Authors
+
+- Smrutee Behera  
+- Harshit Raj
+- Amit Shukla
+- Shivam Kumar
+
+---
+
+## License
+
+Open-source for academic, educational, and non-commercial use.
+
+
+
 
 
 
